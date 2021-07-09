@@ -92,7 +92,7 @@ class Webcam {
           navigator.msGetUserMedia;
       if (navigator.getUserMedia) {
         navigator.getUserMedia(
-            {video: {width: 224, height: 224}},
+            {video: {width: 150, height: 150}},
             stream => {
               this.webcamElement.srcObject = stream;
               this.webcamElement.addEventListener('loadeddata', async () => {

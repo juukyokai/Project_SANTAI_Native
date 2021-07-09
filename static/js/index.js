@@ -5,7 +5,7 @@ var rockSamples=0, paperSamples=0, scissorsSamples=0;
 let isPredicting = false;
 
 async function loadTFJSModel() {
-  const tfjs = await tf.loadLayersModel(url_for('static', filename='modeljs/model.json'));
+  const tfjs = await tf.loadLayersModel("static/modeljs/model.json");
   return tf.model({inputs: tfjs.inputs, outputs: tfjs.output});
 }
 
