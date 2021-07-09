@@ -1,12 +1,13 @@
-let tfjs;
+// let tfjs;
 let model;
 const webcam = new Webcam(document.getElementById('wc'));
 var rockSamples=0, paperSamples=0, scissorsSamples=0;
 let isPredicting = false;
 
 async function loadTFJSModel() {
-  const tfjs = await tf.loadLayersModel("static/modeljs/model.json");
-  return tf.model({inputs: tfjs.inputs, outputs: tfjs.output});
+  const tfjs = await tf.loadLayersModel("static/modeljs_new/model.json");
+//   console.log(tfjs.summary());
+  return tfjs
 }
 
 // async function train() {
@@ -52,25 +53,33 @@ function handleButton(elem){
 	label = parseInt(elem.id);
 	const img = webcam.capture();
 	dataset.addExample(tfjs.predict(img), label);
-
 }
 
 async function predict() {
   while (isPredicting) {
     const predictedClass = tf.tidy(() => {
       const img = webcam.capture();
-      const activation = tfjs.predict(img);
-      const predictions = model.predict(activation);
+      const predictions = tfjs.predict(img);
+    //   const predictions = model.predict(img);
+	  console.log(predictions);
       return predictions.as1D().argMax();
     });
     const classId = (await predictedClass.data())[0];
     var predictionText = "";
+	
+
     switch(classId){
 		case 0:
-			predictionText = "I see Rock";
+			predictionText = "I see Coast Guard";
 			break;
 		case 1:
-			predictionText = "I see Paper";
+			predictionText = "I see Hazard Flag";
+			break;
+		case 2:
+			predictionText = "I see Life Guard Flag";
+			break;
+		case 3:
+			predictionText = "I see Wave Breaker";
 			break;
 	}
 	document.getElementById("prediction").innerText = predictionText;
@@ -99,8 +108,7 @@ function stopPredicting(){
 async function init(){
 	await webcam.setup();
 	tfjs = await loadTFJSModel();
-	tf.tidy(() => tfjs.predict(webcam.capture()));
-		
+	tf.tidy(() => tfjs.predict(webcam.capture()));	
 }
 
 
