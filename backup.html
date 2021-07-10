@@ -1,0 +1,44 @@
+<div class="card text-center" id="imUpload">
+    <div class="card-header">
+      <h2>Upload Image for analysis</h2>
+    </div>
+    <div class="card-body">
+      <div class="row py-4">
+        <div class="col-lg-6 mx-auto">
+
+
+          <!-- Uploaded image area-->
+          <p class="font-italic text-black text-center">The image uploaded will be rendered inside the box below.
+          </p>
+          <div class="image-area mt-4"><img id="imageResult" src="#" alt=""
+              class="img-fluid rounded shadow-sm mx-auto d-block"></div>
+
+          <div id="predictions-s"></div>
+          <div id="predictions-danger"></div>
+          <!-- Form mulai disini -->
+          <div>
+            <video autoplay playsinline muted id="wc" width="224" height="224"></video>
+          </div>
+          <button type="button" id="startPredicting" onclick="startPredicting()">Start Predicting</button>
+          <button type="button" id="stopPredicting" onclick="stopPredicting()">Stop Predicting</button>
+          <div id="prediction"></div>
+          <!-- Upload image input-->
+          <!-- <form action="http://127.0.0.1:5000/uploader" method="POST" enctype="multipart/form-data">
+                <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                    <input id="upload" type="file" name='file' onchange="readURL(this);" class="form-control border-0">
+                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                    <div class="input-group-append">
+                        <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                    </div>
+                </div>
+                <div class="row py-4">
+                  <div class="col-lg-6 mx-auto">
+                    <button type="submit" class="btn btn-primary btn-lg mb-2">Start Prediction</button>
+                  </div>
+                </div>
+              </form> -->
+          <!-- form berhenti disini -->
+        </div>
+      </div>
+    </div>
+  </div>
