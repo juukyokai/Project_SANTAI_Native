@@ -35,25 +35,25 @@ async function loadTFJSModel() {
 // }
 
 
-function handleButton(elem){
-	switch(elem.id){
-		case "0":
-			rockSamples++;
-			document.getElementById("rocksamples").innerText = "Rock samples:" + rockSamples;
-			break;
-		case "1":
-			paperSamples++;
-			document.getElementById("papersamples").innerText = "Paper samples:" + paperSamples;
-			break;
-		case "2":
-			scissorsSamples++;
-			document.getElementById("scissorssamples").innerText = "Scissors samples:" + scissorsSamples;
-			break;
-	}
-	label = parseInt(elem.id);
-	const img = webcam.capture();
-	dataset.addExample(tfjs.predict(img), label);
-}
+// function handleButton(elem){
+// 	switch(elem.id){
+// 		case "0":
+// 			rockSamples++;
+// 			document.getElementById("rocksamples").innerText = "Rock samples:" + rockSamples;
+// 			break;
+// 		case "1":
+// 			paperSamples++;
+// 			document.getElementById("papersamples").innerText = "Paper samples:" + paperSamples;
+// 			break;
+// 		case "2":
+// 			scissorsSamples++;
+// 			document.getElementById("scissorssamples").innerText = "Scissors samples:" + scissorsSamples;
+// 			break;
+// 	}
+// 	label = parseInt(elem.id);
+// 	const img = webcam.capture();
+// 	dataset.addExample(tfjs.predict(img), label);
+// }
 
 async function predict() {
   while (isPredicting) {
@@ -61,9 +61,10 @@ async function predict() {
       const img = webcam.capture();
       const predictions = tfjs.predict(img);
     //   const predictions = model.predict(img);
-	  console.log(predictions);
+	  
       return predictions.as1D().argMax();
     });
+	console.log((await predictedClass.data())[0]);
     const classId = (await predictedClass.data())[0];
     var predictionText = "";
 	
